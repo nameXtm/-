@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+div{
+	position:relative;
+	float:left;
+	
+	}
+#div_container{
+	width:80%;
+	height:100%;
+	border:0px solid blue;
+	margin-left:10%;
+	float:left;
+	background-color:#CCCCCC;
+	}
+	#div_fruit_list{
+		width:100%;
+		border:0px solid red;
+		}
+	#tab_fruit{
+		width:60%;
+		line-height:28px;
+		margin-top:120px;
+		margin-left:20%;
+		
+		border:1px solid gray;
+		border-collapse:collapse;
+		font-family:"黑体";
+	font-weight:lighter;
+	color:#033;
+	
+		}
+#tab_fruit , #tab_fruit tr, #tab_fruit td ,#tab_fruit th, {
+	border:1px solid gray;
+	border-collapse:collapse;
+	text-align:center;
+	font-family:"黑体";
+	font-weight:lighter;
+	color:#033;
+	
+	
+	
+	
+	}
+	th{
+		border:1px solid gray;
+	border-collapse:collapse;
+	text-align:center;
+	font-family:"黑体";
+	font-weight:lighter;
+	color:#033;}
+	tr{
+		border:1px solid gray;
+	border-collapse:collapse;
+	text-align:center;
+	font-family:"黑体";
+	font-weight:lighter;
+	color:#033;}
+	td{
+		border:1px solid gray;
+	border-collapse:collapse;
+	text-align:center;
+	font-family:"黑体";
+	font-weight:lighter;
+	color:#033;}
+	.w20{
+		width:20%;}
+
+</style>
+
+  
+</head>
+
+
+<body>
+<div id="div_container">
+<div id="div_fruit_list">
+<table id="tab_fruit">
+<tr >
+<th class="w20">名称</th>
+<th class="w20">单价</th>
+<th class="w20">数量</th>
+<th class="w20">小计</th>
+    <tr th:if="${#lists.isEmpty(session.list)}">
+    <td colspan="4">对不起，库存为空！</td>
+</tr>
+
+<tr th:unless="${#lists.isEmpty(session.list)}" th:each="fruit : ${session.list}">
+    <!--th:href="@{/edit.do(fid=${fruit.fid}) 绝对路径 路径问题 -->
+<td ><a th:text="${fruit.fname}" th:href="@{/edit.do(fid=${fruit.fid})}"></a>苹果</td>
+<td th:text="${fruit.price}">5</td>
+<td th:text="${fruit.fcount}">20</td>
+<td th:text="${fruit.aggregate}">100</td>
+
+</tr>
+</tr>
+</table>
+</div>
+</div>
+
+</body>
+</html>
